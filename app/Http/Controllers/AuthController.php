@@ -12,16 +12,16 @@ class AuthController extends Controller
     // 📝 REGISTRO de usuario
     public function register(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => bcrypt($validated['password']),
         ]);
 
         return redirect('/login')->with('success', 'Usuario registrado con éxito.');
@@ -30,22 +30,46 @@ class AuthController extends Controller
     // 🔑 LOGIN de usuario
     public function login(Request $request)
     {
-        $request->validate([
+        // Validar las credenciales
+        $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|string|min:6',
+            'password' => 'required',
         ]);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('/admin/dashboard')->with('success', 'Inicio de sesión exitoso.');
+        // Intentar autenticar al usuario
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            // Obtener el usuario autenticado
+            $user = Auth::user();
+
+            // Redirigir según el rol del usuario
+            if ($user->role->name === 'admin') {
+                return redirect()->route('admin.dashboard');
+            } elseif ($user->role->name === 'agricultor') {
+                return redirect()->route('agricultor.dashboard');
+            } elseif ($user->role->name === 'comprador') {
+                return redirect()->route('comprador.dashboard');
+            }
+
+            // Si el rol no coincide con ninguno, redirigir al inicio
+            return redirect()->route('home');
         }
 
-        return back()->withErrors(['email' => 'Credenciales incorrectas.']);
+        // Si las credenciales no son válidas
+        return back()->withErrors([
+            'email' => 'Las credenciales no coinciden con nuestros registros.',
+        ])->onlyInput('email');
     }
 
     // 🚪 LOGOUT
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
-        return redirect('/login')->with('success', 'Sesión cerrada.');
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home');
     }
 }

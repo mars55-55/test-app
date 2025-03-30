@@ -5,7 +5,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgricultorController;
 use App\Http\Controllers\CompradorController;
 use App\Http\Middleware\Authenticate;
+use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return view('home'); // Carga la vista home.blade.php
+})->name('home');   
 
 Route::get('/login', function () {
     dump(auth()->user()->name ?? 'No hay usuario autenticado');
@@ -18,6 +22,8 @@ Route::get('/register', function () {
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::post('/register', [AuthController::class, 'register'])->name('register.api');
 
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
