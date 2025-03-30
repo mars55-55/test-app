@@ -37,10 +37,16 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':agricultor'
     Route::get('/agricultor/dashboard', [AgricultorController::class, 'dashboard'])->name('agricultor.dashboard');
     Route::get('/agricultor/gestionar-productos', [AgricultorController::class, 'gestionarProductos'])->name('agricultor.gestionar-productos');
     Route::get('/agricultor/pedidos-recibidos', [AgricultorController::class, 'pedidosRecibidos'])->name('agricultor.pedidos-recibidos');
+    Route::get('/agricultor/crear-producto', [AgricultorController::class, 'crearProducto'])->name('agricultor.crear-producto');
+    Route::post('/agricultor/guardar-producto', [AgricultorController::class, 'guardarProducto'])->name('agricultor.guardar-producto');
 });
 
 // Rutas para Compradores
 Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':comprador'])->group(function () {
     Route::get('/comprador/dashboard', [CompradorController::class, 'dashboard'])->name('comprador.dashboard');
     Route::get('/comprador/realizar-pedido', [CompradorController::class, 'realizarPedido'])->name('comprador.realizar-pedido');
+    Route::get('/comprador/ver-productos', [CompradorController::class, 'verProductos'])->name('comprador.ver-productos');
+    Route::post('/comprador/agregar-al-carrito/{id}', [CompradorController::class, 'agregarAlCarrito'])->name('comprador.agregar-al-carrito');
+    Route::get('/comprador/ver-carrito', [CompradorController::class, 'verCarrito'])->name('comprador.ver-carrito');
+    Route::post('/comprador/realizar-pedido', [CompradorController::class, 'realizarPedido'])->name('comprador.realizar-pedido');
 });

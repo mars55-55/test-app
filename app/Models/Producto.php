@@ -20,4 +20,11 @@ class Producto extends Model
     {
         return $this->hasOne(Inventario::class);
     }
+
+    public function pedidos()
+    {
+        return $this->belongsToMany(Pedido::class, 'pedido_producto')
+                    ->withPivot('cantidad') // Incluye la cantidad en la tabla pivote
+                    ->withTimestamps(); // Registra las marcas de tiempo
+    }
 }
