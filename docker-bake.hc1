@@ -1,0 +1,19 @@
+group "default" {
+  targets = ["app", "webserver", "db"]
+}
+
+target "app" {
+  context = "."
+  dockerfile = "Dockerfile"
+  tags = ["laravel-app:latest"]
+}
+
+target "webserver" {
+  context = "."
+  dockerfile = "nginx.Dockerfile"
+  tags = ["nginx:latest"]
+}
+
+target "db" {
+  image = "mysql:8.0"
+}
