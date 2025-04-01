@@ -21,6 +21,7 @@
                     <th>Descripción</th>
                     <th>Precio</th>
                     <th>Cantidad Disponible</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +31,14 @@
                     <td>{{ $producto->descripcion }}</td>
                     <td>${{ $producto->precio }}</td>
                     <td>{{ $producto->cantidad_disponible }}</td>
+                    <td>
+                        <a href="{{ route('agricultor.editar-producto', $producto->id) }}" class="btn btn-sm btn-outline-warning rounded-pill">Editar</a>
+                        <form action="{{ route('agricultor.eliminar-producto', $producto->id) }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill" onclick="return confirm('¿Estás seguro de eliminar este producto?')">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

@@ -65,6 +65,35 @@ class AgricultorController extends Controller
         return redirect()->route('agricultor.gestionar-productos')->with('success', 'Producto creado con éxito.');
     }
 
+    public function editarProducto($id)
+    {
+        $producto = Producto::findOrFail($id);
+        return view('agricultor.editar-producto', compact('producto'));
+    }
+
+    public function actualizarProducto(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'precio' => 'required|numeric|min:0',
+            'cantidad_disponible' => 'required|integer|min:1',
+        ]);
+
+        $producto = Producto::findOrFail($id);
+        $producto->update($validated);
+
+        return redirect()->route('agricultor.gestionar-productos')->with('success', 'Producto actualizado con éxito.');
+    }
+
+    public function eliminarProducto($id)
+    {
+        $producto = Producto::findOrFail($id);
+        $producto->delete();
+
+        return redirect()->route('agricultor.gestionar-productos')->with('success', 'Producto eliminado con éxito.');
+    }
+
     public function pedidosRecibidos()
     {
         // Obtener los pedidos relacionados con el agricultor autenticado
