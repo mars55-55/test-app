@@ -27,19 +27,35 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer install --no-dev --optimize-autoloader
 
 # Etapa 2: Imagen final más liviana
-FROM php:8.2-fpm
+FROM php:8.1-fpm
 
-WORKDIR /var/www
+# Instala dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libpq-dev \
+    libzip-dev \
+    zip \
+    curl \
+    && docker-php-ext-install pdo pdo_mysql zip
 
-# Copiar solo los archivos necesarios desde la imagen de construcción
-COPY --from=build /var/www/vendor /var/www/vendor
-COPY . .
+# Instala Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Establecer permisos para almacenamiento y caché
-RUN chown -R www-data:www-data storage bootstrap/cache
+# Copia los archivos del proyecto
+COPY . /var/www/html
 
-# Exponer el puerto 9000 para PHP-FPM
-EXPOSE 9000
+# Establece el directorio de trabajo
+WORKDIR /var/www/html
 
-# Comando por defecto
-CMD ["php-fpm"]
+# Instala dependencias de Laravel
+RUN composer install --no-dev --optimize-autoloader
+
+# Configura permisos
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Expone el puerto 8000
+EXPOSE 8000
+
+# Comando para iniciar Laravel
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
