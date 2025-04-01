@@ -1,27 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1 class="text-center">Crear Producto</h1>
-    <form action="{{ route('agricultor.guardar-producto') }}" method="POST">
+<div class="container mt-5">
+    <h1 class="text-center fw-bold text-success mb-4">Crear Producto</h1>
+    <form action="{{ route('agricultor.guardar-producto') }}" method="POST" class="shadow-sm p-4 rounded bg-light">
         @csrf
-        <div class="form-group">
-            <label for="nombre">Nombre del Producto</label>
-            <input type="text" name="nombre" id="nombre" class="form-control" required>
+        <div class="mb-3">
+            <label for="nombre" class="form-label fw-bold text-success">Nombre del Producto</label>
+            <input type="text" name="nombre" id="nombre" class="form-control border-success" placeholder="Ingresa el nombre del producto" required>
         </div>
-        <div class="form-group">
-            <label for="descripcion">Descripción</label>
-            <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
+        <div class="mb-3">
+            <label for="descripcion" class="form-label fw-bold text-success">Descripción</label>
+            <textarea name="descripcion" id="descripcion" class="form-control border-success" rows="3" placeholder="Describe el producto"></textarea>
         </div>
-        <div class="form-group">
-            <label for="precio">Precio</label>
-            <input type="number" name="precio" id="precio" class="form-control" step="0.01" required>
+        <div class="mb-3">
+            <label for="precio" class="form-label fw-bold text-success">Precio</label>
+            <input type="number" name="precio" id="precio" class="form-control border-success" step="0.01" placeholder="Ingresa el precio" required>
         </div>
-        <div class="form-group">
-            <label for="cantidad_disponible">Cantidad Disponible</label>
-            <input type="number" name="cantidad_disponible" id="cantidad_disponible" class="form-control" required>
+        <div class="mb-3">
+            <label for="cantidad_disponible" class="form-label fw-bold text-success">Cantidad Disponible</label>
+            <input type="number" name="cantidad_disponible" id="cantidad_disponible" class="form-control border-success" placeholder="Ingresa la cantidad disponible" required>
         </div>
-        <button type="submit" class="btn btn-primary mt-3">Guardar Producto</button>
+        <button type="submit" class="btn btn-success w-100 rounded-pill shadow-sm">Guardar Producto</button>
     </form>
 </div>
 @endsection
