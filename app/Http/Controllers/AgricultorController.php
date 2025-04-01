@@ -67,17 +67,23 @@ class AgricultorController extends Controller
 
     public function pedidosRecibidos()
     {
-        $user = Auth::user();
-
-        if (!$user || $user->role->name !== 'agricultor') {
-            return redirect('/acceso-denegado')->with('error', 'No tienes permiso para acceder a esta sección.');
-        }
-
-        // Obtener los pedidos relacionados con los productos del agricultor
-        $pedidos = Pedido::whereHas('productos', function ($query) use ($user) {
-            $query->where('agricultor_id', $user->id);
+        // Obtener los pedidos relacionados con el agricultor autenticado
+        $pedidos = Pedido::whereHas('productos', function ($query) {
+            $query->where('agricultor_id', auth()->id());
         })->get();
 
         return view('agricultor.pedidos-recibidos', compact('pedidos'));
+    }
+
+    public function detallesPedido($id)
+    {
+        $pedido = Pedido::with('productos')->findOrFail($id);
+
+        // Verificar que el pedido esté relacionado con el agricultor autenticado
+        if (!$pedido->productos->where('agricultor_id', auth()->id())->count()) {
+            abort(403, 'No tienes permiso para ver este pedido.');
+        }
+
+        return view('agricultor.pedido-detalles', compact('pedido'));
     }
 }

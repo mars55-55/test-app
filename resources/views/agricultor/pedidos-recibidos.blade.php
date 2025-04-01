@@ -26,7 +26,7 @@
                             @endforeach
                         </ul>
                     </td>
-                    <td>${{ $pedido->total }}</td>
+                    <td>${{ number_format($pedido->total, 2) }}</td>
                     <td>{{ $pedido->created_at->format('d/m/Y H:i') }}</td>
                 </tr>
                 @endforeach

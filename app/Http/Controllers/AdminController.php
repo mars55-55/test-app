@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Producto;
-use App\Models\Pedido;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -28,26 +28,43 @@ class AdminController extends Controller
         return view('admin.usuarios', compact('usuarios'));
     }
 
-    public function productos()
+    public function editarUsuario($id)
     {
-        $productos = Producto::all();
-        return view('admin.productos', compact('productos'));
-    }
+        $usuario = User::find($id);
 
-    public function pedidos()
-    {
-        $pedidos = Pedido::with('detalles')->get();
-        return view('admin.pedidos', compact('pedidos'));
-    }
-
-    public function show($id)
-    {
-        $user = User::find($id); // Obtén el usuario por su ID
-
-        if (!$user) {
+        if (!$usuario) {
             abort(404, 'Usuario no encontrado');
         }
 
-        return view('user.profile', ['user' => $user]);
+        // Obtener todos los roles
+        $roles = \App\Models\Role::all();
+
+        return view('admin.usuario-editar', compact('usuario', 'roles'));
+    }
+
+    public function eliminarUsuario($id)
+    {
+        $usuario = User::find($id);
+
+        if (!$usuario) {
+            abort(404, 'Usuario no encontrado');
+        }
+
+        $usuario->delete();
+
+        return redirect()->route('admin.usuarios')->with('success', 'Usuario eliminado correctamente.');
+    }
+
+    public function actualizarUsuario(Request $request, $id)
+    {
+        $usuario = User::find($id);
+
+        if (!$usuario) {
+            abort(404, 'Usuario no encontrado');
+        }
+
+        $usuario->update($request->only(['name', 'email', 'role_id']));
+
+        return redirect()->route('admin.usuarios')->with('success', 'Usuario actualizado correctamente.');
     }
 }
