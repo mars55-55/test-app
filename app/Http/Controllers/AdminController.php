@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Producto;
+use App\Models\Pedido;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -66,5 +67,14 @@ class AdminController extends Controller
         $usuario->update($request->only(['name', 'email', 'role_id']));
 
         return redirect()->route('admin.usuarios')->with('success', 'Usuario actualizado correctamente.');
+    }
+
+    public function pedidos()
+    {
+        // Obtiene todos los pedidos con sus relaciones
+        $pedidos = Pedido::with('usuario', 'productos')->get();
+
+        // Retorna la vista con los pedidos
+        return view('admin.pedidos', compact('pedidos'));
     }
 }

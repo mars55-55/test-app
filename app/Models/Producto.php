@@ -17,8 +17,11 @@ class Producto extends Model
         'agricultor_id',
     ];
 
-    public function agricultor()
+    // Relación con los pedidos (muchos a muchos)
+    public function pedidos()
     {
-        return $this->belongsTo(User::class, 'agricultor_id');
+        return $this->belongsToMany(Pedido::class, 'pedido_producto')
+                    ->withPivot('cantidad')
+                    ->withTimestamps();
     }
 }

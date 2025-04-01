@@ -1,0 +1,309 @@
+/* Botón "Inicia Sesión" */
+.btn-primary.custom-btn {
+    background: linear-gradient(90deg, #28a745, #218838);
+    border: none;
+    color: white;
+}
+
+.btn-primary.custom-btn:hover {
+    background: linear-gradient(90deg, #218838, #1e7e34);
+    color: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Botones principales */
+.btn-success {
+    background: linear-gradient(90deg, #28a745, #218838);
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background: linear-gradient(90deg, #218838, #1e7e34);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-success {
+    border: 2px solid #28a745;
+    color: #28a745;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-success:hover {
+    background: #28a745;
+    color: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Espaciado entre botones */
+.row .col-md-4 {
+    margin-bottom: 20px;
+}
+
+/* Botón "Crear Producto" */
+.btn-success {
+    background: linear-gradient(90deg, #28a745, #218838);
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background: linear-gradient(90deg, #218838, #1e7e34);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón "Realizar Pedido" */
+.btn-success {
+    background: linear-gradient(90deg, #28a745, #218838);
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background: linear-gradient(90deg, #218838, #1e7e34);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de Confirmar Pago */
+.btn-success {
+    background: linear-gradient(90deg, #28a745, #218838);
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background: linear-gradient(90deg, #218838, #1e7e34);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Sección de Información */
+.info-card {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+}
+
+/* Beneficios */
+.benefit-icon {
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
+    height: 200px; /* Altura fija para todas las imágenes */
+    object-fit: cover; /* Mantiene la proporción de la imagen y recorta el exceso */
+    border-radius: 10px; /* Opcional: esquinas redondeadas */
+    transition: transform 0.3s ease;
+}
+
+.benefit-icon:hover {
+    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+}
+
+/* Tarjetas de beneficios */
+.benefit-card {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Asegura que las imágenes no se salgan del contenedor */
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+h3, h4 {
+    color: #2c3e50;
+}
+
+p {
+    color: #7f8c8d;
+}
+
+/* Header */
+header {
+    background: linear-gradient(90deg, #28a745, #218838);
+    color: white;
+    padding: 15px 0;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Navbar */
+.navbar {
+    border-bottom: 2px solid #28a745;
+}
+
+/* Footer */
+footer {
+    background: #212529;
+    color: #adb5bd;
+    padding: 20px 0;
+}
+
+footer a {
+    color: #ffc107;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #28a745;
+    text-decoration: underline;
+}
+
+/* Tarjetas */
+.card {
+    border: 1px solid #28a745;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos de las tarjetas */
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #28a745;
+}
+
+/* Texto de las tarjetas */
+.card-text {
+    font-size: 1rem;
+    color: #7f8c8d;
+}
+
+/* Encabezado de las tarjetas */
+.card-header {
+    background: linear-gradient(90deg, #28a745, #218838);
+    color: white;
+    font-size: 1.1rem;
+}
+
+/* Campos del formulario */
+.form-control {
+    border: 2px solid #28a745;
+    border-radius: 5px;
+}
+
+.form-control:focus {
+    border-color: #218838;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+.input-group-text {
+    background-color: #28a745;
+    color: white;
+    border: none;
+}
+
+/* Enlace de inicio de sesión */
+a.text-success {
+    text-decoration: none;
+}
+
+a.text-success:hover {
+    text-decoration: underline;
+}
+
+/* Listas */
+.list-group-item {
+    border: none;
+    padding: 15px;
+    font-size: 1rem;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Etiquetas de cantidad */
+.badge {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.badge.bg-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.badge.bg-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.badge.bg-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Tabla de historial de pedidos */
+.table {
+    border: 1px solid #28a745;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.table thead {
+    background: linear-gradient(90deg, #28a745, #218838);
+    color: white;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+/* Listas de productos */
+ul.list-unstyled {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+ul.list-unstyled li {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+/* Celdas de precio */
+.table td.fw-bold.text-success {
+    font-size: 1rem;
+}
+
+/* Total */
+h3.fw-bold.text-success {
+    font-size: 1.5rem;
+}
+
+/* Formulario */
+form {
+    background-color: #f8f9fa;
+    border: 1px solid #28a745;
+    border-radius: 10px;
+}
+
+/* Etiquetas */
+.form-label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #28a745;
+}
+
+/* Resultados de búsqueda */
+h1.text-success {
+    font-size: 2.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}

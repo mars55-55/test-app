@@ -18,10 +18,12 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
+        // Crear el usuario con el rol por defecto de "comprador"
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => bcrypt($validated['password']),
+            'role_id' => 3, // Asigna el rol de "comprador" por defecto
         ]);
 
         return redirect('/login')->with('success', 'Usuario registrado con éxito.');

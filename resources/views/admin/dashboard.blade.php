@@ -1,16 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1 class="text-center">Panel de Administración</h1>
+<div class="container mt-5">
+    <!-- Título principal -->
+    <h1 class="text-center fw-bold text-success mb-4">Panel de Administración</h1>
+
+    <!-- Opciones principales -->
     <div class="row">
-        <div class="col-md-6">
-            <!-- Enlace para gestionar pedidos -->
-            <a href="{{ route('admin.pedidos') }}" class="btn btn-secondary w-100">Gestionar Pedidos</a>
+        <div class="col-md-6 mb-3">
+            <a href="{{ route('admin.pedidos') }}" class="btn btn-outline-success w-100 rounded-pill shadow-sm py-3">
+                Gestionar Pedidos
+            </a>
         </div>
-        <div class="col-md-6">
-            <!-- Enlace para gestionar usuarios -->
-            <a href="{{ route('admin.usuarios') }}" class="btn btn-success w-100">Gestionar Usuarios</a>
+        <div class="col-md-6 mb-3">
+            <a href="{{ route('admin.usuarios') }}" class="btn btn-success w-100 rounded-pill shadow-sm py-3">
+                Gestionar Usuarios
+            </a>
         </div>
     </div>
 </div>

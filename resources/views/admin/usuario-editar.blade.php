@@ -2,26 +2,27 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1 class="text-center my-4">Editar Usuario</h1>
+<div class="container mt-5">
+    <!-- Título principal -->
+    <h1 class="text-center fw-bold text-success mb-4">Editar Usuario</h1>
 
-    <form action="{{ route('admin.usuarios.actualizar', $usuario->id) }}" method="POST">
+    <form action="{{ route('admin.usuarios.actualizar', $usuario->id) }}" method="POST" class="shadow-sm p-4 bg-light rounded">
         @csrf
         @method('PUT')
 
         <div class="mb-3">
-            <label for="name" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{ $usuario->name }}" required>
+            <label for="name" class="form-label fw-bold text-success">Nombre</label>
+            <input type="text" class="form-control border-success" id="name" name="name" value="{{ $usuario->name }}" required>
         </div>
 
         <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" value="{{ $usuario->email }}" required>
+            <label for="email" class="form-label fw-bold text-success">Email</label>
+            <input type="email" class="form-control border-success" id="email" name="email" value="{{ $usuario->email }}" required>
         </div>
 
         <div class="mb-3">
-            <label for="role" class="form-label">Rol</label>
-            <select class="form-control" id="role" name="role_id" required>
+            <label for="role" class="form-label fw-bold text-success">Rol</label>
+            <select class="form-control border-success" id="role" name="role_id" required>
                 @foreach ($roles as $rol)
                     <option value="{{ $rol->id }}" {{ $usuario->role_id == $rol->id ? 'selected' : '' }}>
                         {{ $rol->name }}
@@ -30,7 +31,7 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <button type="submit" class="btn btn-success w-100 rounded-pill">Guardar Cambios</button>
     </form>
 </div>
 @endsection

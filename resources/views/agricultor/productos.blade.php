@@ -3,26 +3,30 @@
 @section('title', 'Gestión de Productos')
 
 @section('content')
-<div class="row">
-    <div class="col-md-12">
-        <h2 class="text-center">Gestión de Productos</h2>
-        <form id="productoForm" class="mb-4">
-            @csrf
-            <div class="row">
-                <div class="col-md-5">
-                    <input type="text" class="form-control" id="nombre" placeholder="Nombre del Producto" required>
-                </div>
-                <div class="col-md-3">
-                    <input type="number" class="form-control" id="precio" placeholder="Precio" required>
-                </div>
-                <div class="col-md-4">
-                    <button type="submit" class="btn btn-success w-100">Agregar Producto</button>
-                </div>
-            </div>
-        </form>
+<div class="container mt-5">
+    <!-- Título principal -->
+    <h1 class="text-center fw-bold text-success mb-4">Gestión de Productos</h1>
 
-        <table class="table table-striped">
-            <thead>
+    <!-- Formulario para agregar producto -->
+    <form id="productoForm" class="shadow-sm p-4 bg-light rounded mb-4">
+        @csrf
+        <div class="row">
+            <div class="col-md-5 mb-3">
+                <input type="text" class="form-control border-success" id="nombre" placeholder="Nombre del Producto" required>
+            </div>
+            <div class="col-md-3 mb-3">
+                <input type="number" class="form-control border-success" id="precio" placeholder="Precio" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <button type="submit" class="btn btn-success w-100 rounded-pill">Agregar Producto</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Tabla de productos -->
+    <div class="table-responsive">
+        <table class="table table-hover shadow-sm">
+            <thead class="bg-success text-white">
                 <tr>
                     <th>Nombre</th>
                     <th>Precio</th>
@@ -52,8 +56,8 @@ async function cargarProductos() {
                     <td>${prod.nombre}</td>
                     <td>${prod.precio}</td>
                     <td>
-                        <button class="btn btn-primary btn-sm" onclick="editarProducto(${prod.id}, '${prod.nombre}', ${prod.precio})">Editar</button>
-                        <button class="btn btn-danger btn-sm" onclick="eliminarProducto(${prod.id})">Eliminar</button>
+                        <button class="btn btn-primary btn-sm rounded-pill" onclick="editarProducto(${prod.id}, '${prod.nombre}', ${prod.precio})">Editar</button>
+                        <button class="btn btn-danger btn-sm rounded-pill" onclick="eliminarProducto(${prod.id})">Eliminar</button>
                     </td>
                 </tr>`;
         });
@@ -79,7 +83,7 @@ document.getElementById('productoForm').addEventListener('submit', async functio
     });
 
     if (response.ok) {
-        document.getElementById('successMessage').textContent = 'Producto agregado correctamente.';
+        alert('Producto agregado correctamente.');
         document.getElementById('productoForm').reset();
         cargarProductos(); // Recargar la lista de productos
     } else {
@@ -109,7 +113,7 @@ function editarProducto(id, nombre, precio) {
         });
 
         if (response.ok) {
-            document.getElementById('successMessage').textContent = 'Producto actualizado correctamente.';
+            alert('Producto actualizado correctamente.');
             form.reset();
             form.onsubmit = agregarProducto; // Restaurar el evento original
             cargarProductos(); // Recargar la lista de productos
