@@ -6,6 +6,7 @@ use App\Http\Controllers\AgricultorController;
 use App\Http\Controllers\CompradorController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TrackingController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
@@ -14,7 +15,6 @@ Route::get('/', function () {
 })->name('home');   
 
 Route::get('/login', function () {
-    dump(auth()->user()->name ?? 'No hay usuario autenticado');
     return view('auth.login');
 })->name('login');
 
@@ -65,4 +65,11 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':comprador']
     Route::post('/comprador/cancelar-pedido/{id}', [CompradorController::class, 'cancelarPedido'])->name('comprador.cancelar-pedido');
     Route::post('/comprador/pagar-pedidos', [CompradorController::class, 'pagarPedidos'])->name('comprador.pagar-pedidos');
     Route::post('/comprador/confirmar-pago', [CompradorController::class, 'confirmarPago'])->name('comprador.confirmar-pago');
+});
+
+// Rutas para seguimiento
+Route::middleware(['auth'])->group(function () {
+    Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking.index');
+    Route::get('/tracking/create', [TrackingController::class, 'create'])->name('tracking.create');
+    Route::post('/tracking', [TrackingController::class, 'store'])->name('tracking.store');
 });
