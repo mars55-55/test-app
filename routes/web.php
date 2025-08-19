@@ -38,6 +38,10 @@ Route::prefix('admin')->middleware(['auth', \App\Http\Middleware\CheckRole::clas
     Route::delete('/admin/usuarios/{id}', [AdminController::class, 'eliminarUsuario'])->name('admin.usuarios.eliminar');
     Route::put('/admin/usuarios/{id}', [AdminController::class, 'actualizarUsuario'])->name('admin.usuarios.actualizar');
     Route::get('/pedidos', [AdminController::class, 'pedidos'])->name('admin.pedidos');
+    Route::post('/admin/usuarios/registrar', [AdminController::class, 'registrar'])->name('admin.usuarios.registrar');
+    Route::get('/admin/usuarios/registro-exito', function () {
+        return redirect()->route('admin.usuarios')->with('registro_exito', 'Usuario registrado correctamente.');
+    })->name('admin.usuarios.registro-exito');
 });
 
 // Rutas para Agricultores

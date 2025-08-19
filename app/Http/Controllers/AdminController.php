@@ -77,4 +77,23 @@ class AdminController extends Controller
         // Retorna la vista con los pedidos
         return view('admin.pedidos', compact('pedidos'));
     }
+
+    public function registrar(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6',
+            'role_id' => 'required|in:1,2',
+        ]);
+
+        $user = \App\Models\User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role_id' => $request->role_id,
+        ]);
+
+        return redirect()->route('admin.usuarios')->with('registro_exito', 'Usuario registrado correctamente.');
+    }
 }

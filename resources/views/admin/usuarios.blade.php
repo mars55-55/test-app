@@ -6,6 +6,43 @@
     <!-- Título principal -->
     <h1 class="text-center fw-bold text-success mb-4">Gestión de Usuarios</h1>
 
+    {{-- Formulario para registrar nuevo usuario --}}
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white fw-bold">Registrar Nuevo Usuario</div>
+        <div class="card-body">
+            <form method="POST" action="{{ route('admin.usuarios.registrar') }}">
+                @csrf
+                <div class="row">
+                    <div class="col-md-3 mb-2">
+                        <input type="text" name="name" class="form-control" placeholder="Nombre" required>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <select name="role_id" class="form-control" required>
+                            <option value="">Seleccione rol</option>
+                            <option value="2">Agricultor</option>
+                            <option value="3">Comprador</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1 mb-2">
+                        <button type="submit" class="btn btn-success w-100">Registrar</button>
+                    </div>
+                </div>
+            </form>
+            @if(session('registro_error'))
+                <div class="text-danger mt-2">{{ session('registro_error') }}</div>
+            @endif
+            @if(session('registro_exito'))
+                <div class="text-success mt-2">{{ session('registro_exito') }}</div>
+            @endif
+        </div>
+    </div>
+
     @if ($usuarios->isEmpty())
         <div class="alert alert-info text-center">
             No hay usuarios registrados.
