@@ -18,10 +18,16 @@
             </a>
         </div>
     </div>
+
     <div class="row mb-5">
         <div class="col-md-6">
             <a href="{{ route('tracking.index') }}" class="btn btn-outline-success w-100 rounded-pill shadow-sm py-3">
                 Seguimiento de Cultivos
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a href="{{ route('agricultor.sembrar.form') }}" class="btn btn-primary w-100 rounded-pill shadow-sm py-3">
+                Sembrar / Cultivar
             </a>
         </div>
     </div>

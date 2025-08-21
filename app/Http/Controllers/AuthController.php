@@ -23,7 +23,7 @@ class AuthController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => bcrypt($validated['password']),
-            'role_id' => 3, // Asigna el rol de "comprador" por defecto
+            'role_id' => 2, // Asigna el rol de "comprador" por defecto
         ]);
 
         return redirect('/login')->with('success', 'Usuario registrado con éxito.');

@@ -51,6 +51,9 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':agricultor'
     Route::put('/agricultor/actualizar-producto/{id}', [AgricultorController::class, 'actualizarProducto'])->name('agricultor.actualizar-producto');
     Route::delete('/agricultor/eliminar-producto/{id}', [AgricultorController::class, 'eliminarProducto'])->name('agricultor.eliminar-producto');
     Route::get('/agricultor/pedidos/{id}', [AgricultorController::class, 'detallesPedido'])->name('agricultor.pedidos.detalles');
+    Route::get('/agricultor/sembrar', [TrackingController::class, 'sembrarForm'])->name('agricultor.sembrar.form');
+    Route::post('/agricultor/sembrar', [TrackingController::class, 'recomendar'])->name('agricultor.sembrar.recomendar');
+    Route::post('/agricultor/sembrar/confirmar', [TrackingController::class, 'confirmarSiembra'])->name('agricultor.sembrar.confirmar');
 });
 
 // Rutas para Compradores
