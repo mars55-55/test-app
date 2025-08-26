@@ -9,6 +9,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PasswordResetController;
 
 Route::get('/', function () {
     return view('home'); // Carga la vista home.blade.php
@@ -29,6 +30,13 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/register', [AuthController::class, 'register'])->name('register.api');
 
 Route::get('/buscar', [SearchController::class, 'buscar'])->name('buscar');
+
+// Password reset (solicitar enlace + formulario de reset)
+Route::get('password/reset', [PasswordResetController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [PasswordResetController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [PasswordResetController::class, 'reset'])->name('password.update');
+
 
 // Rutas para Administradores
 Route::prefix('admin')->middleware(['auth', \App\Http\Middleware\CheckRole::class . ':admin'])->group(function () {
@@ -76,3 +84,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tracking/create', [TrackingController::class, 'create'])->name('tracking.create');
     Route::post('/tracking', [TrackingController::class, 'store'])->name('tracking.store');
 });
+

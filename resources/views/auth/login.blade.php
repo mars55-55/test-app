@@ -37,6 +37,10 @@
                     <button type="submit" class="btn btn-success w-100 rounded-pill">Iniciar Sesión</button>
                 </form>
 
+                <div class="text-center mt-3">
+                    <a href="{{ route('password.request') }}" class="btn btn-link">¿Olvidaste tu contraseña?</a>
+                </div>
+
                 {{-- Mostrar errores de autenticación --}}
                 @if ($errors->any())
                     <div class="text-danger mt-3">

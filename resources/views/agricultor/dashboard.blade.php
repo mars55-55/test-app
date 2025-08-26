@@ -6,7 +6,7 @@
     <h1 class="text-center fw-bold text-success mb-4">Panel del Agricultor</h1>
 
     <!-- Opciones principales -->
-    <div class="row mb-5">
+    {{-- <div class="row mb-5">
         <div class="col-md-6">
             <a href="{{ route('agricultor.gestionar-productos') }}" class="btn btn-success w-100 rounded-pill shadow-sm py-3">
                 Gestionar Mis Productos
@@ -18,7 +18,7 @@
             </a>
         </div>
     </div>
-
+ --}}
     <div class="row mb-5">
         <div class="col-md-6">
             <a href="{{ route('tracking.index') }}" class="btn btn-outline-success w-100 rounded-pill shadow-sm py-3">

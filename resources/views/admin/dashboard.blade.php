@@ -7,11 +7,11 @@
 
     <!-- Opciones principales -->
     <div class="row">
-        <div class="col-md-6 mb-3">
+       {{-- <div class="col-md-6 mb-3">
             <a href="{{ route('admin.pedidos') }}" class="btn btn-outline-success w-100 rounded-pill shadow-sm py-3">
                 Gestionar Pedidos
             </a>
-        </div>
+        </div> --}}
         <div class="col-md-6 mb-3">
             <a href="{{ route('admin.usuarios') }}" class="btn btn-success w-100 rounded-pill shadow-sm py-3">
                 Gestionar Usuarios
